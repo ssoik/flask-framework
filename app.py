@@ -16,6 +16,8 @@ def index():
 
 @app.route('/plotStocks', methods = ['POST'])
 def plotStocks():
+    return 'should plot stocks'
+    """
     ticker = request.form['ticker']
     month = request.form['month']
     start = pd.to_datetime('2016-' + month + '-01')
@@ -28,8 +30,8 @@ def plotStocks():
     stocks['Date'] = pd.to_datetime(stocks['Date'])
     stocks = stocks[stocks['Date'] >= start]
     stocks = stocks[stocks['Date'] < stop]
-    return ', '.join([str(x) for x in stocks['Close']])
-    """
+#    return ', '.join([str(x) for x in stocks['Close']])
+    
     p = figure(title = 'Kaggle Huge Stock Market Dataset (2016)', x_axis_type = 'datetime', x_axis_label = 'Date',
                y_axis_label = 'Price (USD)')
     p.line(stocks['Date'], stocks['Close'], legend_label = ticker.upper() + ': Close')
