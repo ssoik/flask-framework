@@ -26,12 +26,9 @@ def plotStocks():
 
     stocks = pd.read_csv('price-volume-data-for-all-us-stocks-etfs/Data/Stocks/' + ticker.lower() + '.us.txt',
                          usecols = ['Date', 'Close'])
-    return str(stocks['Close'][0])
-    """
     stocks['Date'] = pd.to_datetime(stocks['Date'])
     stocks = stocks[stocks['Date'] >= start]
     stocks = stocks[stocks['Date'] < stop]
-#    return ', '.join([str(x) for x in stocks['Close']])
     
     p = figure(title = 'Kaggle Huge Stock Market Dataset (2016)', x_axis_type = 'datetime', x_axis_label = 'Date',
                y_axis_label = 'Price (USD)')
@@ -43,6 +40,6 @@ def plotStocks():
     f.write(html)
     f.close()
     return render_template('plot.html')
-    """
+
 if __name__ == '__main__':
   app.run(port=33507)
