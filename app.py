@@ -24,7 +24,8 @@ def plotStocks():
     else:
         stop = pd.to_datetime('2016-' + str(int(month) + 1) + '-01')
 
-    stocks = pd.read_csv(filepath + ticker.lower() + '.us.txt', usecols = ['Date', 'Close'])
+    stocks = pd.read_csv('price-volume-data-for-all-us-stocks-etfs/Data/Stocks/' + ticker.lower() + '.us.txt',
+                         usecols = ['Date', 'Close'])
     return str(stocks['Close'][0])
     """
     stocks['Date'] = pd.to_datetime(stocks['Date'])
