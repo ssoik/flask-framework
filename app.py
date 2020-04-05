@@ -5,8 +5,7 @@ from bokeh.plotting import figure
 from bokeh.resources import CDN
 from bokeh.embed import file_html
 
-filepath = '/Users/samsoik/Documents/TDI/12-day-program/day-10/\
-price-volume-data-for-all-us-stocks-etfs/Data/Stocks/'
+filepath = 'price-volume-data-for-all-us-stocks-etfs/Data/Stocks/'
 
 app = Flask(__name__)
 
@@ -24,8 +23,7 @@ def plotStocks():
     else:
         stop = pd.to_datetime('2016-' + str(int(month) + 1) + '-01')
 
-    stocks = pd.read_csv('price-volume-data-for-all-us-stocks-etfs/Data/Stocks/' + ticker.lower() + '.us.txt',
-                         usecols = ['Date', 'Close'])
+    stocks = pd.read_csv(filepath + ticker.lower() + '.us.txt', usecols = ['Date', 'Close'])
     stocks['Date'] = pd.to_datetime(stocks['Date'])
     stocks = stocks[stocks['Date'] >= start]
     stocks = stocks[stocks['Date'] < stop]
@@ -36,10 +34,11 @@ def plotStocks():
     p.legend.location = 'top_left'
 
     html = file_html(p, CDN, 'plotStocks')
-    f = open('templates/plot.html', 'w')
+    fname = 'plot-' + ticker.lower() + '-2016-' + month + '.html'
+    f = open('templates/' + fname, 'w')
     f.write(html)
     f.close()
-    return render_template('plot.html')
+    return render_template(fname)
 
 if __name__ == '__main__':
   app.run(port=33507)
