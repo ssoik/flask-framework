@@ -23,12 +23,10 @@ def plotStocks():
         stop = pd.to_datetime('2017-01-01')
     else:
         stop = pd.to_datetime('2016-' + str(int(month) + 1) + '-01')
-    if start < stop:
-        return 'True'
-    else:
-        return 'False'
-    """
+
     stocks = pd.read_csv(filepath + ticker.lower() + '.us.txt', usecols = ['Date', 'Close'])
+    return str(stocks['Close'][0])
+    """
     stocks['Date'] = pd.to_datetime(stocks['Date'])
     stocks = stocks[stocks['Date'] >= start]
     stocks = stocks[stocks['Date'] < stop]
