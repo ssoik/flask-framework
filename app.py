@@ -16,10 +16,10 @@ def index():
 
 @app.route('/plotStocks', methods = ['POST'])
 def plotStocks():
-    return 'should plot stocks'
-    """
     ticker = request.form['ticker']
     month = request.form['month']
+    return ticker + ', ' + month
+    """
     start = pd.to_datetime('2016-' + month + '-01')
     if month == '12':
         stop = pd.to_datetime('2017-01-01')
