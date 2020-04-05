@@ -18,14 +18,16 @@ def index():
 def plotStocks():
     ticker = request.form['ticker']
     month = request.form['month']
-    return ticker + ', ' + month
-    """
     start = pd.to_datetime('2016-' + month + '-01')
     if month == '12':
         stop = pd.to_datetime('2017-01-01')
     else:
         stop = pd.to_datetime('2016-' + str(int(month) + 1) + '-01')
-
+    if start < stop:
+        return 'True'
+    else:
+        return 'False'
+    """
     stocks = pd.read_csv(filepath + ticker.lower() + '.us.txt', usecols = ['Date', 'Close'])
     stocks['Date'] = pd.to_datetime(stocks['Date'])
     stocks = stocks[stocks['Date'] >= start]
